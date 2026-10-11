@@ -289,7 +289,7 @@ p { margin: 0 0 1em; }
   bottom: 0;
   width: 27%;
   padding: 2.2%;
-  border-radius: 36px;
+  border-radius: 17% / 8.6%;
   background: linear-gradient(145deg, #3c3c44, #18181c 55%, #2a2a31);
   box-shadow: 0 0 0 1px #45454e, 0 30px 60px -12px rgba(0, 0, 0, .95);
 }
@@ -307,7 +307,7 @@ p { margin: 0 0 1em; }
 .phone__screen {
   position: relative;
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: 13% / 6.6%;
   padding-top: 13%;            /* barra de status */
   background: #0b0d17;          /* mesma cor do topo do site mostrado */
 }
@@ -711,7 +711,8 @@ p { margin: 0 0 1em; }
   .cta-section { padding-bottom: 80px; }
   .hero { padding: 56px 0 72px; }
   .hero__actions .btn { width: 100%; }
-  .hero__features { grid-template-columns: 1fr; gap: 18px; margin-top: 40px; }
+  .hero__features { flex-direction: column; gap: 18px; margin-top: 40px; }
+  .devices { padding: 0 13% 8% 7%; margin-right: 0; }
   .grid--3, .grid--4, .extras, .steps { grid-template-columns: 1fr; }
   .plans { max-width: none; }
   .niches__list { grid-template-columns: 1fr 1fr; }
