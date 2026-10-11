@@ -287,9 +287,9 @@ p { margin: 0 0 1em; }
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 27%;
-  padding: 2.2%;
-  border-radius: 17% / 8.6%;
+  width: 24%;
+  padding: 1.5%;
+  border-radius: 15% / 7%;
   background: linear-gradient(145deg, #3c3c44, #18181c 55%, #2a2a31);
   box-shadow: 0 0 0 1px #45454e, 0 30px 60px -12px rgba(0, 0, 0, .95);
 }
@@ -297,9 +297,9 @@ p { margin: 0 0 1em; }
 .phone::after {
   content: "";
   position: absolute;
-  top: 22%;
-  right: -3px;
-  width: 3px;
+  top: 20%;
+  right: -2px;
+  width: 2px;
   height: 14%;
   border-radius: 0 2px 2px 0;
   background: #3a3a42;
@@ -307,18 +307,18 @@ p { margin: 0 0 1em; }
 .phone__screen {
   position: relative;
   overflow: hidden;
-  border-radius: 13% / 6.6%;
-  padding-top: 13%;            /* barra de status */
+  border-radius: 12% / 5.6%;
+  padding-top: 11%;            /* barra de status */
   background: #0b0d17;          /* mesma cor do topo do site mostrado */
 }
 /* câmera frontal ("ilha") */
 .phone__screen::before {
   content: "";
   position: absolute;
-  top: 2.4%;
+  top: 1.8%;
   left: 50%;
-  width: 30%;
-  height: 3.8%;
+  width: 28%;
+  height: 2.9%;
   max-height: 22px;
   transform: translateX(-50%);
   border-radius: 20px;
