@@ -104,18 +104,7 @@ p { margin: 0 0 1em; }
   gap: 12px;
   text-decoration: none;
 }
-.logo__mark {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  border: 1.5px solid var(--gold);
-  color: var(--gold);
-  font-family: var(--font-title);
-  font-weight: 700;
-  font-size: 1rem;
-}
+.logo__mark { height: 32px; width: auto; flex-shrink: 0; }
 .logo__text { display: flex; flex-direction: column; line-height: 1.2; }
 .logo__text strong {
   font-family: var(--font-title);

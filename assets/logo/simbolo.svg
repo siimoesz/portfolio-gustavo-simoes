@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="395 178 731 450"><defs><linearGradient id="gs8g" gradientUnits="userSpaceOnUse" x1="395" y1="178" x2="1126" y2="628"><stop offset="0" stop-color="#F5DDA6"/><stop offset=".45" stop-color="#E2B867"/><stop offset="1" stop-color="#B8893A"/></linearGradient>
+    <clipPath id="gs8a"><path d="M -100 -100 L 1028.6 -100 L 708.6 300 L 2000 300 L 2000 1100 L -100 1100 Z"/></clipPath>
+    <clipPath id="gs8b"><path d="M -100 -100 L 1142.4 -100 L 182.4000000000001 1100 L -100 1100 Z"/></clipPath>
+    <clipPath id="gs8c"><path d="M 937.4 -100 L 2000 -100 L 2000 1100 L -22.600000000000023 1100 Z"/></clipPath>
+    <clipPath id="gs8d"><path d="M -100 -100 L 1435 -100 L 1059 370 L 3000 370 L 3000 1100 L -100 1100 Z"/></clipPath>
+    <clipPath id="gs8e"><path d="M -100 -100 L 3000 -100 L 3000 1100 L 340 1100 L 820 500 L -100 500 Z"/></clipPath>
+    <clipPath id="gs8f"><path d="M 1182.4 -100 L 2000 -100 L 2000 1100 L 222.4000000000001 1100 Z"/></clipPath>
+  </defs>
+  <g fill="none" stroke="url(#gs8g)" stroke-width="66" stroke-linejoin="round">
+    <g clip-path="url(#gs8b)"><g clip-path="url(#gs8a)"><path d="M 820 225 H 568 A 140 140 0 0 0 568 505 H 701" stroke-linejoin="miter"/></g>
+      <g clip-path="url(#gs8c)"><path d="M 701 505 V 358 H 520" stroke-linejoin="miter"/></g></g>
+    <g clip-path="url(#gs8f)"><g clip-path="url(#gs8e)"><g clip-path="url(#gs8d)"><path d="M 1160 320 H 877 A 59 59 0 0 0 877 438 H 1029 A 60 60 0 0 1 1029 558 H 720"/></g></g></g>
+  </g>
+  <path d="M 940 178 Q 769.4 410.5 580 628 Q 750.6 395.5 940 178 Z" fill="url(#gs8g)"/></svg>
