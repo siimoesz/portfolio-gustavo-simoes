@@ -22,6 +22,13 @@ document.querySelectorAll(".js-whats").forEach((botao) => {
   });
 });
 
+// Conta cada clique no e-mail no Google Analytics (evento "clique_email")
+document.querySelectorAll(".js-email").forEach((link) => {
+  link.addEventListener("click", () => {
+    if (typeof gtag === "function") gtag("event", "clique_email");
+  });
+});
+
 // ===== Menu do celular =====
 const menuToggle = document.getElementById("menuToggle");
 const nav = document.getElementById("nav");
