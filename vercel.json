@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.gustavosimoes.com.br" }],
+      "destination": "https://gustavosimoes.com.br/:path*",
+      "permanent": true
+    }
+  ]
+}
