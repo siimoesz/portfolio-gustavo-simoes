@@ -13,6 +13,13 @@ document.querySelectorAll(".js-whats").forEach((botao) => {
   botao.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
   botao.target = "_blank";
   botao.rel = "noopener";
+
+  // Conta cada clique no WhatsApp no Google Analytics (evento "clique_whatsapp")
+  botao.addEventListener("click", () => {
+    if (typeof gtag === "function") {
+      gtag("event", "clique_whatsapp", { plano: plano || "geral" });
+    }
+  });
 });
 
 // ===== Menu do celular =====
