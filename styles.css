@@ -219,7 +219,7 @@ p { margin: 0 0 1em; }
    o celular fica apoiado no canto inferior direito, por cima do notebook. */
 .devices {
   position: relative;
-  padding: 0 13% 7% 1%;
+  padding: 0 13% 7% 3%;
   margin-right: -3%;
 }
 /* brilho dourado suave atrás dos aparelhos */
@@ -237,7 +237,7 @@ p { margin: 0 0 1em; }
 .laptop__lid {
   position: relative;
   padding: 2.4% 2.4% 3.2%;
-  border-radius: 18px 18px 0 0;
+  border-radius: 18px 18px 6px 6px;
   background: linear-gradient(160deg, #2e2e35, #17171b 60%);
   box-shadow: 0 0 0 1px #3a3a42, inset 0 0 0 1px rgba(255, 255, 255, .04);
 }
@@ -264,9 +264,8 @@ p { margin: 0 0 1em; }
 .laptop__base {
   position: relative;
   height: 14px;
-  margin: 0;
-  border-radius: 0 0 14px 14px / 0 0 10px 10px;
-  border-top: 1px solid #0c0c0f;      /* dobradiça entre tela e base */
+  margin: 0 -6%;
+  border-radius: 2px 2px 14px 14px / 2px 2px 10px 10px;
   background: linear-gradient(#55555e, #2a2a31 45%, #141418);
   box-shadow: 0 24px 40px -12px rgba(0, 0, 0, .9);
 }
@@ -713,7 +712,7 @@ p { margin: 0 0 1em; }
   .hero { padding: 56px 0 72px; }
   .hero__actions .btn { width: 100%; }
   .hero__features { flex-direction: column; gap: 18px; margin-top: 40px; }
-  .devices { padding: 0 13% 8% 3%; margin-right: 0; }
+  .devices { padding: 0 13% 8% 7%; margin-right: 0; }
   .grid--3, .grid--4, .extras, .steps { grid-template-columns: 1fr; }
   .plans { max-width: none; }
   .niches__list { grid-template-columns: 1fr 1fr; }
