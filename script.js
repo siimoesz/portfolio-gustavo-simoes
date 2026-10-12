@@ -33,19 +33,35 @@ document.querySelectorAll(".js-email").forEach((link) => {
 const menuToggle = document.getElementById("menuToggle");
 const nav = document.getElementById("nav");
 
-function fecharMenu() {
-  nav.classList.remove("is-open");
-  menuToggle.setAttribute("aria-expanded", "false");
-  menuToggle.setAttribute("aria-label", "Abrir menu");
+// (a página de política de privacidade não tem menu, por isso o "if")
+if (menuToggle && nav) {
+  const fecharMenu = () => {
+    nav.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menu");
+  };
+
+  menuToggle.addEventListener("click", () => {
+    const aberto = nav.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(aberto));
+    menuToggle.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
+  });
+
+  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", fecharMenu));
 }
 
-menuToggle.addEventListener("click", () => {
-  const aberto = nav.classList.toggle("is-open");
-  menuToggle.setAttribute("aria-expanded", String(aberto));
-  menuToggle.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
-});
-
-nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", fecharMenu));
+// ===== Aviso de cookies (LGPD) =====
+// Aparece só na primeira visita; ao clicar em "Entendi", o navegador lembra e não mostra mais.
+const avisoCookies = document.getElementById("avisoCookies");
+if (avisoCookies) {
+  let jaViu = false;
+  try { jaViu = localStorage.getItem("avisoCookies") === "ok"; } catch (e) {}
+  if (!jaViu) avisoCookies.hidden = false;
+  avisoCookies.querySelector("button").addEventListener("click", () => {
+    avisoCookies.hidden = true;
+    try { localStorage.setItem("avisoCookies", "ok"); } catch (e) {}
+  });
+}
 
 // ===== Animação das seções ao rolar a página =====
 const observer = new IntersectionObserver(
@@ -62,4 +78,5 @@ const observer = new IntersectionObserver(
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
 // ===== Ano automático no rodapé =====
-document.getElementById("year").textContent = new Date().getFullYear();
+const ano = document.getElementById("year");
+if (ano) ano.textContent = new Date().getFullYear();

@@ -653,6 +653,44 @@ p { margin: 0 0 1em; }
   font-size: .82rem;
 }
 .footer__bottom p { margin: 0; }
+.footer__bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.footer__bottom a { color: var(--muted); }
+.footer__bottom a:hover { color: var(--gold-light); }
+
+/* ===== Aviso de cookies ===== */
+.cookie-bar {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 70;
+  max-width: 460px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: rgba(20, 20, 24, .96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .8);
+  font-size: .88rem;
+  color: var(--muted);
+}
+.cookie-bar[hidden] { display: none; }
+.cookie-bar p { margin: 0; }
+.cookie-bar a { color: var(--gold-light); }
+.cookie-bar .btn { flex-shrink: 0; }
+
+/* ===== Página de política de privacidade ===== */
+.legal { padding: 72px 0 96px; }
+.legal .container { max-width: 780px; }
+.legal h1 { font-size: clamp(2rem, 4.5vw, 2.8rem); }
+.legal h2 { font-size: 1.3rem; margin-top: 2.2em; }
+.legal p, .legal li { color: var(--muted); }
+.legal strong { color: var(--text); }
+.legal a { color: var(--gold-light); }
+.legal .updated { font-size: .9rem; }
 
 /* ===== WhatsApp flutuante ===== */
 .whats-float {
@@ -719,7 +757,8 @@ p { margin: 0 0 1em; }
   .cta { padding: 36px 24px; }
   .cta .btn { width: 100%; }
   .footer__inner { flex-direction: column; text-align: center; }
-  .footer__bottom { text-align: center; }
+  .footer__bottom { text-align: center; justify-content: center; }
+  .cookie-bar { left: 12px; right: 88px; bottom: 16px; max-width: none; flex-direction: column; align-items: stretch; gap: 10px; }
 
   .menu-toggle { display: flex; }
   .logo__text small { display: none; }
