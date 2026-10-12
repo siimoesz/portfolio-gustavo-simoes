@@ -527,6 +527,72 @@ p { margin: 0 0 1em; }
 .quote p { color: var(--text) !important; font-size: 1.05rem; font-style: italic; margin-bottom: .6em; }
 .quote footer { color: var(--gold); font-weight: 600; font-size: .92rem; }
 
+/* ===== Comparação "Muitas agências x Comigo" ===== */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 28px;
+}
+.compare__col {
+  border-radius: var(--radius);
+  padding: 30px;
+  border: 1px solid var(--border);
+}
+.compare__col h3 { margin-bottom: 1em; }
+.compare__col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.compare__col li { position: relative; padding-left: 30px; }
+.compare__col li::before { position: absolute; left: 0; font-weight: 700; }
+.compare__col--them { background: transparent; }
+.compare__col--them h3 { color: var(--muted); }
+.compare__col--them li { color: var(--muted); }
+.compare__col--them li::before { content: "✕"; color: #6b6b72; }
+.compare__col--me {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, rgba(226, 184, 103, .09), var(--surface) 55%);
+}
+.compare__col--me h3 { color: var(--gold); }
+.compare__col--me li { color: var(--text); }
+.compare__col--me li::before { content: "✓"; color: var(--gold); }
+
+/* ===== Garantia ===== */
+.guarantee {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 20px 26px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(226, 184, 103, .45);
+  background: rgba(226, 184, 103, .06);
+}
+.guarantee svg {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.guarantee p { margin: 0; color: var(--muted); }
+.guarantee strong { color: var(--text); }
+
+/* Selo para projetos fictícios (usar nos projetos conceito) */
+.project__badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(226, 184, 103, .5);
+  color: var(--gold);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
 /* ===== Planos ===== */
 .plans { align-items: stretch; }
 .plan {
@@ -750,6 +816,9 @@ p { margin: 0 0 1em; }
   .hero { padding: 56px 0 72px; }
   .hero__actions .btn { width: 100%; }
   .hero__features { flex-direction: column; gap: 18px; margin-top: 40px; }
+  .compare { grid-template-columns: 1fr; }
+  .compare__col { padding: 24px; }
+  .guarantee { align-items: flex-start; padding: 18px 20px; }
   .devices { padding: 0 13% 8% 7%; margin-right: 0; }
   .grid--3, .grid--4, .extras, .steps { grid-template-columns: 1fr; }
   .plans { max-width: none; }
