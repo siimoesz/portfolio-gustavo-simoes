@@ -28,8 +28,40 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:locale" content="pt_BR">
 
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="/assets/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <!-- Dados estruturados: dizem ao Google o nome, o logo e o contato da marca -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://gustavosimoes.com.br/#marca",
+        "name": "Gustavo Simões Desenvolvimento Web",
+        "url": "https://gustavosimoes.com.br/",
+        "logo": "https://gustavosimoes.com.br/assets/logo/perfil-redes-sociais.png",
+        "email": "gustavo.marketing885@gmail.com",
+        "telephone": "+55-11-99797-5622",
+        "areaServed": ["Barueri", "Santana de Parnaíba", "Osasco", "Carapicuíba", "São Paulo"],
+        "founder": { "@type": "Person", "name": "Gustavo Simões" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://gustavosimoes.com.br/#site",
+        "url": "https://gustavosimoes.com.br/",
+        "name": "Gustavo Simões",
+        "inLanguage": "pt-BR",
+        "publisher": { "@id": "https://gustavosimoes.com.br/#marca" }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
