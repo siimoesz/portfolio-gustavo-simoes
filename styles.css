@@ -385,8 +385,8 @@ p { margin: 0 0 1em; }
 /* ===== Projetos ===== */
 .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .project {
-  display: block;
-  text-decoration: none;
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -394,31 +394,58 @@ p { margin: 0 0 1em; }
   transition: border-color .25s, transform .25s;
 }
 .project:hover { border-color: rgba(226, 184, 103, .6); transform: translateY(-4px); }
-.project__image { aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--border); }
+.project__image { display: block; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--border); }
 .project__image img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .6s; }
 .project:hover .project__image img { transform: scale(1.04); }
-.project__info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 22px 24px;
-}
+.project__info { display: flex; flex-direction: column; flex: 1; padding: 22px 24px 24px; }
 .project__info h3 { margin-bottom: .2em; font-size: 1.25rem; }
 .project__info p { color: var(--muted); margin: 0; font-size: .92rem; }
-.project__link {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
+.project__cat { color: var(--gold) !important; font-size: .85rem !important; }
+.project__summary { margin-top: 12px !important; flex: 1; }
+.project__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.project__actions .btn { flex: 1; min-width: 130px; }
+.project__info .project__badge { align-self: flex-start; }
+button.btn { font: inherit; font-weight: 600; cursor: pointer; background: transparent; }
+button.btn--outline { color: var(--text); }
+
+/* ===== Detalhes do projeto (dialog) ===== */
+.case {
+  width: min(920px, calc(100% - 32px));
+  max-height: calc(100% - 48px);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  overflow-y: auto;
+}
+.case::backdrop { background: rgba(0, 0, 0, .75); backdrop-filter: blur(4px); }
+.case__inner { position: relative; padding: 36px 40px 40px; }
+.case h3 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: .6em; }
+.case h4 { font-family: var(--font-title); font-size: 1rem; color: var(--gold); margin: 0 0 .4em; }
+.case p, .case li { color: var(--muted); font-size: .97rem; }
+.case p { margin: 0 0 1.2em; }
+.case ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
+.case img { width: 100%; height: auto; border-radius: var(--radius-sm); border: 1px solid var(--border); margin: 8px 0 28px; }
+.case__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 20px; }
+.case__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.case__close {
+  position: sticky;
+  top: 0;
+  float: right;
+  width: 42px;
+  height: 42px;
+  margin: -12px -16px 0 0;
   border-radius: 50%;
   border: 1px solid var(--border);
-  flex-shrink: 0;
-  transition: background .25s, border-color .25s;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
 }
-.project__link svg { width: 18px; height: 18px; fill: none; stroke: var(--gold); stroke-width: 2; }
-.project:hover .project__link { background: var(--gold); border-color: var(--gold); }
-.project:hover .project__link svg { stroke: var(--gold-ink); }
+.case__close:hover { border-color: var(--gold); color: var(--gold); }
 
 /* ===== Cards de serviço ===== */
 .card, .feature {
@@ -554,6 +581,9 @@ p { margin: 0 0 1em; }
 .compare__col--me h3 { color: var(--gold); }
 .compare__col--me li { color: var(--text); }
 .compare__col--me li::before { content: "✓"; color: var(--gold); }
+
+.plans__note { margin: 20px 0 0; color: var(--muted); font-size: .92rem; max-width: 900px; }
+.plans__note strong { color: var(--text); }
 
 /* ===== Garantia ===== */
 .guarantee {
@@ -818,6 +848,8 @@ p { margin: 0 0 1em; }
   .hero__actions .btn { width: 100%; }
   .hero__features { flex-direction: column; gap: 18px; margin-top: 40px; }
   .compare { grid-template-columns: 1fr; }
+  .case__inner { padding: 28px 20px 28px; }
+  .case__grid { grid-template-columns: 1fr; gap: 8px; }
   .compare__col { padding: 24px; }
   .guarantee { align-items: flex-start; padding: 18px 20px; }
   .devices { padding: 0 13% 8% 7%; margin-right: 0; }

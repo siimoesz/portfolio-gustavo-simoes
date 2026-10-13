@@ -6,10 +6,13 @@ const MENSAGEM_PADRAO = "Olá, Gustavo! Vi seu portfólio e quero um orçamento 
 // Todos os botões com a classe "js-whats" abrem o WhatsApp.
 // Se o botão tiver data-plano, a mensagem já diz qual plano a pessoa escolheu.
 document.querySelectorAll(".js-whats").forEach((botao) => {
-  const plano = botao.dataset.plano;
-  const mensagem = plano
-    ? `Olá, Gustavo! Vi seu portfólio e tenho interesse no plano ${plano}.`
-    : MENSAGEM_PADRAO;
+  const projeto = botao.dataset.projeto; // botões "Quero um site assim" dos projetos
+  const plano = botao.dataset.plano || (projeto && `projeto ${projeto}`);
+  const mensagem = projeto
+    ? `Olá, Gustavo! Vi o projeto ${projeto} no seu portfólio e quero um site assim.`
+    : botao.dataset.plano
+      ? `Olá, Gustavo! Vi seu portfólio e tenho interesse no plano ${botao.dataset.plano}.`
+      : MENSAGEM_PADRAO;
   botao.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
   botao.target = "_blank";
   botao.rel = "noopener";
@@ -49,6 +52,22 @@ if (menuToggle && nav) {
 
   nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", fecharMenu));
 }
+
+// ===== Detalhes dos projetos ("Ver detalhes") =====
+document.querySelectorAll("[data-case]").forEach((botao) => {
+  const caixa = document.getElementById(botao.dataset.case);
+  if (!caixa || typeof caixa.showModal !== "function") return;
+  botao.addEventListener("click", () => {
+    caixa.showModal();
+    caixa.scrollTop = 0;
+    if (typeof gtag === "function") gtag("event", "ver_detalhes_projeto", { projeto: botao.dataset.case });
+  });
+});
+document.querySelectorAll("dialog.case").forEach((caixa) => {
+  caixa.querySelector(".case__close").addEventListener("click", () => caixa.close());
+  // fecha ao clicar fora do conteúdo
+  caixa.addEventListener("click", (e) => { if (e.target === caixa) caixa.close(); });
+});
 
 // ===== Aviso de cookies (LGPD) =====
 // Aparece só na primeira visita; ao clicar em "Entendi", o navegador lembra e não mostra mais.
