@@ -383,7 +383,7 @@ p { margin: 0 0 1em; }
 .grid--4 { grid-template-columns: repeat(4, 1fr); }
 
 /* ===== Projetos ===== */
-.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .project {
   display: block;
   text-decoration: none;
@@ -787,6 +787,7 @@ p { margin: 0 0 1em; }
 
 /* ===== Notebook / tablet ===== */
 @media (max-width: 1080px) {
+  .projects { grid-template-columns: 1fr 1fr; }
   .nav { gap: 22px; }
   .hero__grid { grid-template-columns: 1fr; gap: 64px; }
   .devices { max-width: 680px; margin: 0 auto; width: 100%; }
