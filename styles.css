@@ -543,6 +543,18 @@ button.btn--outline { color: var(--text); }
 }
 .about__content p { color: var(--muted); }
 .about__content .lead { color: var(--text); }
+.credentials { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 10px; }
+.credentials li {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--muted); font-size: .95rem;
+}
+.credentials strong { color: var(--text); font-weight: 600; }
+.credentials a { color: var(--gold); }
+.credentials svg { flex: none; width: 22px; height: 22px; fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .quote {
   margin: 32px 0 0;
   padding: 26px 28px;
