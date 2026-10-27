@@ -418,28 +418,56 @@ p { margin: 0 0 1em; }
 .grid--3 { grid-template-columns: repeat(3, 1fr); }
 .grid--4 { grid-template-columns: repeat(4, 1fr); }
 
+/* ===== Prova de velocidade (notas do Lighthouse deste site) ===== */
+.proof { padding: 56px 0; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.proof__inner { display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 48px; align-items: center; }
+.proof h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin: 0 0 .4em; }
+.proof p { color: var(--muted); margin: 0; }
+.proof__scores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.proof__scores li { text-align: center; font-size: .85rem; color: var(--muted); }
+/* o anel dourado preenche conforme a nota (--v) */
+.gauge {
+  --v: 100;
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, var(--bg-alt) 82%, transparent 83%),
+    conic-gradient(var(--gold) calc(var(--v) * 1%), var(--border) 0);
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
 /* ===== Projetos ===== */
-.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+/* Cada projeto é uma faixa grande: print de um lado, texto do outro (alternando) */
+.projects { display: grid; grid-template-columns: 1fr; gap: 40px; }
 .project {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   transition: border-color .25s, transform .25s;
 }
-.project:hover { border-color: rgba(226, 184, 103, .6); transform: translateY(-4px); }
-.project__image { display: block; aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--border); }
+.project:hover { border-color: rgba(226, 184, 103, .6); }
+.project:nth-child(even) { grid-template-columns: 1fr 1.45fr; }
+.project__image { display: block; aspect-ratio: 16 / 10; overflow: hidden; border-right: 1px solid var(--border); }
+.project:nth-child(even) .project__image { order: 2; border-right: 0; border-left: 1px solid var(--border); }
 .project__image img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .6s; }
 .project:hover .project__image img { transform: scale(1.04); }
-.project__info { display: flex; flex-direction: column; flex: 1; padding: 22px 24px 24px; }
-.project__info h3 { margin-bottom: .2em; font-size: 1.25rem; }
+.project__info { display: flex; flex-direction: column; justify-content: center; padding: 44px; }
+.project__info h3 { margin-bottom: .2em; font-size: clamp(1.6rem, 2.4vw, 2.1rem); }
 .project__info p { color: var(--muted); margin: 0; font-size: .92rem; }
 .project__cat { color: var(--gold) !important; font-size: .85rem !important; }
-.project__summary { margin-top: 12px !important; flex: 1; }
-.project__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-.project__actions .btn { flex: 1; min-width: 130px; }
+.project__summary { margin-top: 12px !important; font-size: 1.02rem !important; max-width: 42ch; }
+.project__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.project__actions .btn { min-width: 130px; }
 .project__info .project__badge { align-self: flex-start; }
 button.btn { font: inherit; font-weight: 600; cursor: pointer; background: transparent; }
 button.btn--outline { color: var(--text); }
@@ -865,7 +893,6 @@ button.btn--outline { color: var(--text); }
 
 /* ===== Notebook / tablet ===== */
 @media (max-width: 1080px) {
-  .projects { grid-template-columns: 1fr 1fr; }
   .nav { gap: 22px; }
   .hero__grid { grid-template-columns: 1fr; gap: 64px; }
   .devices { max-width: 680px; margin: 0 auto; width: 100%; }
@@ -882,8 +909,11 @@ button.btn--outline { color: var(--text); }
 @media (max-width: 900px) {
   .grid--3 { grid-template-columns: 1fr 1fr; }
   .plans { grid-template-columns: 1fr; max-width: 520px; }
-  .projects { grid-template-columns: 1fr; }
+  .project, .project:nth-child(even) { grid-template-columns: 1fr; }
+  .project__image, .project:nth-child(even) .project__image { order: 0; border: 0; border-bottom: 1px solid var(--border); }
+  .project__info { padding: 24px; }
   .niches__list { grid-template-columns: repeat(3, 1fr); }
+  .proof__inner { grid-template-columns: 1fr; gap: 32px; }
 }
 
 /* ===== Celular ===== */
@@ -904,6 +934,7 @@ button.btn--outline { color: var(--text); }
   .grid--3, .grid--4, .extras, .steps { grid-template-columns: 1fr; }
   .plans { max-width: none; }
   .niches__list { grid-template-columns: 1fr 1fr; }
+  .proof__scores { grid-template-columns: 1fr 1fr; gap: 24px 16px; }
   .cta { padding: 36px 24px; }
   .cta .btn { width: 100%; }
   .footer__inner { flex-direction: column; text-align: center; }
