@@ -512,6 +512,8 @@ p { margin: 0 0 1em; }
 .project__info .project__badge { align-self: flex-start; }
 button.btn { font: inherit; font-weight: 600; cursor: pointer; background: transparent; }
 button.btn--outline { color: var(--text); }
+button.btn--gold { background: var(--gold-gradient); }
+button.btn:disabled { opacity: .6; cursor: wait; }
 
 /* ===== Detalhes do projeto (dialog) ===== */
 .case {

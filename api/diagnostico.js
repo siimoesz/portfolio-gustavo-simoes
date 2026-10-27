@@ -93,10 +93,17 @@ async function baixar(inicial) {
   throw new Error("muitos redirecionamentos");
 }
 
+// Converte códigos como &#8211; e &amp; de volta para o caractere certo
+const ENTIDADES = { amp: "&", lt: "<", gt: ">", quot: "\"", apos: "'", nbsp: " ", ndash: "–", mdash: "—", hellip: "…" };
+const decodificar = (s) => s
+  .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
+  .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+  .replace(/&([a-z]+);/gi, (m, n) => ENTIDADES[n.toLowerCase()] || m);
+
 const tem = (re, html) => re.test(html);
 const atributo = (re, html) => {
   const m = html.match(re);
-  return m ? m[1].trim() : "";
+  return m ? decodificar(m[1]).replace(/\s+/g, " ").trim() : "";
 };
 
 function analisar({ resp, html, urlFinal, tempo }) {
