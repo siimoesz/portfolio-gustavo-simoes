@@ -22,6 +22,10 @@ document.querySelectorAll(".js-whats").forEach((botao) => {
     if (typeof gtag === "function") {
       gtag("event", "clique_whatsapp", { plano: plano || "geral" });
     }
+    // Conta o mesmo clique no Meta (Pixel), como evento padrão "Contact"
+    if (typeof fbq === "function") {
+      fbq("track", "Contact", { content_name: plano || "geral" });
+    }
   });
 });
 
