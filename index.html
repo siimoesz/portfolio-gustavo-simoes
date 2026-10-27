@@ -192,6 +192,27 @@
       </div>
     </section>
 
+    <!-- ===== DIAGNÓSTICO GRATUITO =====
+         O formulário chama /api/diagnostico (pasta api/). A nota do Google precisa
+         da chave PSI_KEY configurada no painel da Vercel. -->
+    <section class="section diag" id="diagnostico" aria-labelledby="diag-titulo">
+      <div class="container diag__inner">
+        <div class="diag__head">
+          <h2 id="diag-titulo">E o seu site? Descubra a nota dele</h2>
+          <p>Cole o endereço do seu site e veja, em poucos segundos, se ele está pronto para o celular, para o Google e para receber clientes pelo WhatsApp. É grátis e não precisa de cadastro.</p>
+        </div>
+        <form class="diag__form" id="diagForm" novalidate>
+          <label for="diagUrl">Endereço do seu site</label>
+          <div class="diag__row">
+            <input id="diagUrl" name="url" type="text" inputmode="url" autocomplete="url" placeholder="suaempresa.com.br" required>
+            <button type="submit" class="btn btn--gold">Analisar meu site</button>
+          </div>
+          <p class="diag__hint">O endereço é usado só para a análise e não fica guardado.</p>
+        </form>
+        <div class="diag__result" id="diagResult" aria-live="polite" hidden></div>
+      </div>
+    </section>
+
     <!-- ===== NICHOS ===== -->
     <section class="niches">
       <div class="container niches__inner">

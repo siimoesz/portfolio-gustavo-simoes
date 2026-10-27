@@ -103,3 +103,109 @@ document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 // ===== Ano automático no rodapé =====
 const ano = document.getElementById("year");
 if (ano) ano.textContent = new Date().getFullYear();
+
+// ===== Diagnóstico gratuito de sites =====
+// Primeiro mostra as verificações básicas (rápidas) e depois busca a nota do Google,
+// que demora mais. O botão final abre o WhatsApp já com o resultado na mensagem.
+const diagForm = document.getElementById("diagForm");
+const diagResult = document.getElementById("diagResult");
+
+if (diagForm && diagResult) {
+  const criar = (tag, classe, texto) => {
+    const el = document.createElement(tag);
+    if (classe) el.className = classe;
+    if (texto != null) el.textContent = texto; // sempre texto puro: nada do site analisado vira código
+    return el;
+  };
+  const corDaNota = (n) => (n >= 90 ? "#3fbf7f" : n >= 50 ? "#E2B867" : "#e07a7a");
+
+  diagForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const url = diagForm.url.value.trim();
+    const botao = diagForm.querySelector("button");
+    diagResult.hidden = false;
+    diagResult.replaceChildren(criar("p", "diag__status", "Analisando o site…"));
+    if (!url) {
+      diagResult.replaceChildren(criar("p", "diag__erro", "Digite o endereço do seu site, por exemplo: suaempresa.com.br"));
+      return;
+    }
+    botao.disabled = true;
+    if (typeof gtag === "function") gtag("event", "diagnostico_site");
+
+    let dados;
+    try {
+      const resp = await fetch(`/api/diagnostico?url=${encodeURIComponent(url)}`);
+      dados = await resp.json();
+    } catch (err) {
+      dados = { erro: "Não consegui fazer a análise agora. Tente de novo em alguns instantes." };
+    }
+    botao.disabled = false;
+    if (dados.erro) {
+      diagResult.replaceChildren(criar("p", "diag__erro", dados.erro));
+      return;
+    }
+
+    // Resumo + espaço para as notas do Google
+    const resumo = criar("div", "diag__resumo");
+    const textos = criar("div");
+    textos.append(criar("h3", null, `${dados.acertos} de ${dados.total} itens em dia`), criar("p", null, dados.url));
+    const notas = criar("ul", "diag__notas");
+    const statusNota = criar("li", "diag__status", "Calculando a nota de velocidade do Google (pode levar até 30 segundos)…");
+    notas.append(statusNota);
+    resumo.append(textos, notas);
+
+    // Lista de itens: o que está ok e o que falta
+    const lista = criar("ul", "diag__lista");
+    dados.itens.forEach((item) => {
+      const li = criar("li", item.ok ? "ok" : "falta");
+      li.append(criar("strong", null, item.titulo), criar("span", null, item.explicacao));
+      lista.append(li);
+    });
+
+    // Chamada para o WhatsApp com o resultado
+    const faltas = dados.itens.filter((i) => !i.ok).map((i) => i.titulo.toLowerCase());
+    const cta = criar("div", "diag__cta");
+    const ctaTexto = criar("p", null, faltas.length
+      ? `Encontrei ${faltas.length} ${faltas.length === 1 ? "ponto" : "pontos"} para melhorar. Quer que eu te explique como resolver?`
+      : "Seu site está em dia nesses pontos. Quer uma análise mais completa do visual e dos textos?");
+    const zap = criar("a", "btn btn--gold", "Quero melhorar meu site");
+    const montarLink = (extra) => {
+      const msg = `Olá, Gustavo! Fiz o diagnóstico do meu site (${dados.url}) no seu portfólio: ${dados.acertos} de ${dados.total} itens em dia${extra || ""}.` +
+        (faltas.length ? ` Pontos para melhorar: ${faltas.join("; ")}.` : "") + " Pode me ajudar?";
+      zap.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+    };
+    montarLink();
+    zap.target = "_blank";
+    zap.rel = "noopener";
+    zap.addEventListener("click", () => {
+      if (typeof gtag === "function") gtag("event", "clique_whatsapp", { plano: "diagnostico" });
+      if (typeof fbq === "function") fbq("track", "Contact", { content_name: "diagnostico" });
+    });
+    cta.append(ctaTexto, zap);
+
+    diagResult.replaceChildren(resumo, lista, cta);
+
+    // Nota do Google (mais demorada)
+    try {
+      const resp = await fetch(`/api/diagnostico?url=${encodeURIComponent(dados.url)}&etapa=nota`);
+      const nota = await resp.json();
+      if (nota.indisponivel || nota.erro || nota.velocidade == null) {
+        statusNota.remove();
+        return;
+      }
+      const itens = [["Velocidade no celular", nota.velocidade], ["Acessibilidade", nota.acessibilidade], ["SEO", nota.seo]];
+      const lis = itens.filter(([, n]) => n != null).map(([rotulo, n]) => {
+        const li = criar("li");
+        const g = criar("span", "gauge", String(n));
+        g.style.setProperty("--v", n);
+        g.style.setProperty("--nota-cor", corDaNota(n));
+        li.append(g, document.createTextNode(rotulo));
+        return li;
+      });
+      notas.replaceChildren(...lis);
+      montarLink(`, nota de velocidade no celular ${nota.velocidade}`);
+    } catch (err) {
+      statusNota.remove();
+    }
+  });
+}
