@@ -511,26 +511,20 @@ button.btn--outline { color: var(--text); }
 }
 .case__close:hover { border-color: var(--gold); color: var(--gold); }
 
-/* ===== Cards de serviço ===== */
-.card, .feature {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 30px;
-  transition: border-color .25s, transform .25s;
+/* ===== Serviços (lista: nome | descrição | preço) ===== */
+.services { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+.services li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) 180px;
+  gap: 32px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
 }
-.card:hover, .feature:hover { border-color: rgba(226, 184, 103, .5); transform: translateY(-4px); }
-.card p, .feature p { color: var(--muted); margin: 0; font-size: .97rem; }
-.card__icon, .feature svg {
-  width: 34px;
-  height: 34px;
-  margin-bottom: 22px;
-  fill: none;
-  stroke: var(--gold);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
+.services h3 { margin: 0; font-size: clamp(1.2rem, 1.8vw, 1.45rem); }
+.services p { margin: 0; color: var(--muted); }
+.services .services__price { text-align: right; font-size: .92rem; }
+.services__price strong { color: var(--gold); font-size: 1.05rem; font-weight: 600; }
 
 /* ===== Processo ===== */
 .steps {
@@ -892,6 +886,8 @@ button.btn--outline { color: var(--text); }
 
 @media (max-width: 900px) {
   .grid--3 { grid-template-columns: 1fr 1fr; }
+  .services li { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+  .services .services__price { text-align: left; }
   .plans { grid-template-columns: 1fr; max-width: 520px; }
   .project, .project:nth-child(even) { grid-template-columns: 1fr; }
   .project__image, .project:nth-child(even) .project__image { order: 0; border: 0; border-bottom: 1px solid var(--border); }
