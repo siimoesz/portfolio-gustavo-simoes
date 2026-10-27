@@ -114,7 +114,7 @@ function analisar({ resp, html, urlFinal, tempo }) {
 
   const rapido = tempo < 1500;
   add("resposta", rapido,
-    rapido ? `O servidor responde rápido (${(tempo / 1000).toFixed(1)} s)` : `O servidor demora para responder (${(tempo / 1000).toFixed(1)} s)`,
+    rapido ? `O servidor responde rápido (${(tempo / 1000).toFixed(1).replace(".", ",")} s)` : `O servidor demora para responder (${(tempo / 1000).toFixed(1).replace(".", ",")} s)`,
     rapido ? "A primeira resposta chega rápido." : "Antes de mostrar qualquer coisa, o site já fica esperando o servidor.");
 
   const celular = tem(/<meta[^>]+name=["']viewport["']/i, html);

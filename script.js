@@ -163,7 +163,7 @@ if (diagForm && diagResult) {
     });
 
     // Chamada para o WhatsApp com o resultado
-    const faltas = dados.itens.filter((i) => !i.ok).map((i) => i.titulo.toLowerCase());
+    const faltas = dados.itens.filter((i) => !i.ok).map((i) => i.titulo.charAt(0).toLowerCase() + i.titulo.slice(1));
     const cta = criar("div", "diag__cta");
     const ctaTexto = criar("p", null, faltas.length
       ? `Encontrei ${faltas.length} ${faltas.length === 1 ? "ponto" : "pontos"} para melhorar. Quer que eu te explique como resolver?`
